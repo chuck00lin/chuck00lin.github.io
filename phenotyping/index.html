@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Plant Phenotyping — UAV video to temporal crop monitoring</title>
+<meta name="description" content="A UAV-video-based 3D phenotyping pipeline: Gaussian Splatting reconstruction, per-plant separation, organ-level trait extraction and cross-day growth monitoring.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%274%27 fill=%27%237ee787%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/style.css?v=20260822a">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="../">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span>3D Plant Phenotyping</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#pipeline">Pipeline</a>
+    <a href="#stages">Reconstruction</a>
+    <a href="#growth">Growth</a>
+    <a href="#tools">Tools</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">UAV video → 3D reconstruction → per-plant traits → time</p>
+    <h1>From one drone flight to the 3D growth history of every plant in the row.</h1>
+    <p class="lede">
+      A single hand-held or UAV video is reconstructed with Gaussian Splatting, separated into
+      individual plants, measured organ by organ, and linked across capture days —
+      turning routine greenhouse flights into longitudinal phenotypic records.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#pipeline">See the pipeline</a>
+      <a class="btn btn-ghost" href="#growth">Watch a plant grow</a>
+    </div>
+  </div>
+
+  <figure class="hero-media">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+           poster="../media/flight/three_panel_highlight_960x427_poster.jpg">
+      <source src="../media/flight/three_panel_highlight_960w.webm" type="video/webm">
+      <source src="../media/flight/three_panel_highlight_960w.mp4" type="video/mp4">
+    </video>
+    <figcaption>
+      <span class="tag">UAV video</span>
+      <span class="tag">SfM sparse points</span>
+      <span class="tag">3D Gaussian Splatting</span>
+      <span class="cap-note">Same camera path, rendered through three stages of the pipeline · greenhouse melon, DAT 15</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ============ PIPELINE STRIP ============ -->
+<section id="pipeline" class="section pipeline">
+  <div class="section-head">
+    <p class="eyebrow">Pipeline</p>
+    <h2>Five stages, one continuous chain of evidence</h2>
+  </div>
+  <ol class="steps">
+    <li class="step">
+      <span class="step-no">01</span>
+      <h3>Capture</h3>
+      <p>UAV or hand-held video sweeps along a crop row. AprilTags in the scene provide metric scale.</p>
+    </li>
+    <li class="step">
+      <span class="step-no">02</span>
+      <h3>Reconstruct</h3>
+      <p>Frame selection → COLMAP/GLOMAP structure-from-motion → 3D Gaussian Splatting of the whole row.</p>
+    </li>
+    <li class="step">
+      <span class="step-no">03</span>
+      <h3>Separate</h3>
+      <p>SAM3 masks on the video frames are lifted into 3D to cut the scene into individual plants.</p>
+    </li>
+    <li class="step">
+      <span class="step-no">04</span>
+      <h3>Measure</h3>
+      <p>Plant height and span, then organ-level instance segmentation for leaf count, area and inclination.</p>
+    </li>
+    <li class="step">
+      <span class="step-no">05</span>
+      <h3>Monitor</h3>
+      <p>Plants keep their identity across days, so every trait becomes a growth curve.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ STAGE SEQUENCE ============ -->
+<section id="stages" class="section stages">
+  <div class="section-head">
+    <p class="eyebrow">One plant, four representations</p>
+    <h2>What the pipeline sees</h2>
+    <p class="section-lede">The same melon plant (row B, plant 01, DAT 24), rendered from an identical camera as it moves through the pipeline.</p>
+  </div>
+
+  <div class="stages-grid">
+    <figure class="stages-anim">
+      <img src="../media/stages/plant01/stage_sequence_compact_alpha.webp"
+           alt="Turntable of one plant cycling through SfM seed points, Gaussian Splatting reconstruction, RGB point cloud and organ segmentation"
+           width="480" height="640" loading="lazy">
+      <figcaption>360° turntable · four stages · looping</figcaption>
+    </figure>
+
+    <ol class="stage-list">
+      <li>
+        <img src="../media/stages/plant01/still_sfm_seed_720.webp" alt="" width="90" height="120" loading="lazy">
+        <div><h3>SfM sparse seed</h3><p>Triangulated feature points from the whole-row reconstruction, cropped to this plant. Sparse, but already metric.</p></div>
+      </li>
+      <li>
+        <img src="../media/stages/plant01/still_recon_gs_720.webp" alt="" width="90" height="120" loading="lazy">
+        <div><h3>3D Gaussian Splatting</h3><p>Photoreal radiance field trained on the selected frames; the per-plant splat after separation and refinement.</p></div>
+      </li>
+      <li>
+        <img src="../media/stages/plant01/still_cloud_rgb_720.webp" alt="" width="90" height="120" loading="lazy">
+        <div><h3>Point cloud export</h3><p>Gaussian centres exported as a coloured point cloud — the input for geometric trait extraction.</p></div>
+      </li>
+      <li>
+        <img src="../media/stages/plant01/still_organ_seg_720.webp" alt="" width="90" height="120" loading="lazy">
+        <div><h3>Organ instance segmentation</h3><p>Point-Transformer-v3 instance segmentation labels every leaf and the stem — here 31 leaf instances.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ GROWTH ============ -->
+<section id="growth" class="section growth">
+  <div class="section-head">
+    <p class="eyebrow">Growth monitoring</p>
+    <h2>The same plant, ten days apart</h2>
+    <p class="section-lede">Fixed metric camera, so what you see growing is real growth. Hover a card to spin the plant.</p>
+  </div>
+
+  <div class="growth-row">
+    <div class="growth-label">
+      <strong>2026 cohort</strong><span>row B · plant 03 · cv. Earl's Favourite</span>
+    </div>
+    <div class="cards">
+      <figure class="card" data-still="../media/growth/2026-03-27/poster.png" data-anim="../media/growth/2026-03-27/spin_alpha.webp">
+        <img src="../media/growth/2026-03-27/poster.png" alt="Plant at DAT 4" loading="lazy">
+        <figcaption><b>DAT 4</b><span>2026-03-27</span><em>≈ 26 cm</em></figcaption>
+      </figure>
+      <figure class="card" data-still="../media/growth/2026-04-06/poster.png" data-anim="../media/growth/2026-04-06/spin_alpha.webp">
+        <img src="../media/growth/2026-04-06/poster.png" alt="Plant at DAT 14" loading="lazy">
+        <figcaption><b>DAT 14</b><span>2026-04-06</span><em>≈ 67 cm</em></figcaption>
+      </figure>
+      <figure class="card" data-still="../media/growth/2026-04-16/poster.png" data-anim="../media/growth/2026-04-16/spin_alpha.webp">
+        <img src="../media/growth/2026-04-16/poster.png" alt="Plant at DAT 24" loading="lazy">
+        <figcaption><b>DAT 24</b><span>2026-04-16</span><em>≈ 153 cm</em></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="growth-row">
+    <div class="growth-label">
+      <strong>2025 cohort</strong><span>row A · plant 01 · mixed cultivar</span>
+    </div>
+    <div class="cards">
+      <figure class="card" data-still="../media/growth/2025-12-02/poster.png" data-anim="../media/growth/2025-12-02/spin_alpha.webp">
+        <img src="../media/growth/2025-12-02/poster.png" alt="Plant at DAS 15" loading="lazy">
+        <figcaption><b>DAS 15</b><span>2025-12-02</span><em>≈ 68 cm</em></figcaption>
+      </figure>
+      <figure class="card" data-still="../media/growth/2025-12-10/poster.png" data-anim="../media/growth/2025-12-10/spin_alpha.webp">
+        <img src="../media/growth/2025-12-10/poster.png" alt="Plant at DAS 23" loading="lazy">
+        <figcaption><b>DAS 23</b><span>2025-12-10</span><em>≈ 105 cm</em></figcaption>
+      </figure>
+      <figure class="card" data-still="../media/growth/2025-12-18/poster.png" data-anim="../media/growth/2025-12-18/spin_alpha.webp">
+        <img src="../media/growth/2025-12-18/poster.png" alt="Plant at DAS 31" loading="lazy">
+        <figcaption><b>DAS 31</b><span>2025-12-18</span><em>≈ 145 cm</em></figcaption>
+      </figure>
+    </div>
+  </div>
+  <p class="foot-note">Heights shown are render extents from the AprilTag-scaled reconstruction (placeholder — will be replaced by measured plant-height traits).</p>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section class="section numbers">
+  <ul class="stat-row">
+    <li><b>18 × 11</b><span>plants × measurement days in the 2026 longitudinal cohort</span></li>
+    <li><b>4</b><span>representations per plant, from sparse seed to organ labels</span></li>
+    <li><b>31</b><span>leaf instances segmented on one plant at DAT 24</span></li>
+    <li><b>520</b><span>synchronised camera poses in the full-flight three-panel demo</span></li>
+  </ul>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section id="tools" class="section tools">
+  <div class="section-head">
+    <p class="eyebrow">Tooling</p>
+    <h2>Built to be re-run, not just shown</h2>
+  </div>
+  <div class="tool-grid">
+    <article class="tool">
+      <h3>Scene &amp; plant dashboards</h3>
+      <p>A web dashboard orchestrates every step — scale estimation, alignment, SAM3 masks, plant extraction, trait export — per scene and per plant, with status tracked in YAML.</p>
+      <p class="placeholder">[ dashboard walkthrough recording — coming ]</p>
+    </article>
+    <article class="tool">
+      <h3>Architecture analysis</h3>
+      <p>Cross-day leaf-rank, leaf-area and temporal-surface analysis, with interactive 3D plots.</p>
+      <p class="placeholder">[ interactive Plotly embed — coming ]</p>
+    </article>
+    <article class="tool">
+      <h3>Open source</h3>
+      <p>Pipeline code, GUIs and dashboards live in a public repository.</p>
+      <p class="placeholder">[ repo links — coming ]</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section about">
+  <div class="section-head">
+    <p class="eyebrow">About</p>
+    <h2>Who / where</h2>
+    <p class="section-lede placeholder">[ author, lab, institution, thesis / paper links, contact — to fill in ]</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 · 3D Plant Phenotyping</span>
+  <span class="footer-note">Preview build.</span>
+</footer>
+
+<!-- dev-only style switcher -->
+<div class="dev-switch" role="group" aria-label="Theme preview">
+  <span>Theme</span>
+  <button data-theme-pick="dark" class="on">Dark lab</button>
+  <button data-theme-pick="paper">Paper</button>
+  <button data-theme-pick="field">Field</button>
+</div>
+
+<script src="../js/main.js?v=20260822a"></script>
+</body>
+</html>

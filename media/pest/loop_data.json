@@ -1,0 +1,70 @@
+{
+ "title": "distilled from the live project map (aggregates only)",
+ "source_span": [
+  "2026-06-06",
+  "2026-08-21"
+ ],
+ "working_days": 23,
+ "events": 133,
+ "measurements": 336,
+ "contract_nodes": 58,
+ "accepted_flows": 18,
+ "nodes": [
+  {
+   "id": "field",
+   "label": "Field intake"
+  },
+  {
+   "id": "dataset",
+   "label": "Dataset"
+  },
+  {
+   "id": "train",
+   "label": "Train"
+  },
+  {
+   "id": "evaluate",
+   "label": "Evaluate"
+  },
+  {
+   "id": "investigate",
+   "label": "Investigate"
+  },
+  {
+   "id": "ship",
+   "label": "Ship"
+  }
+ ],
+ "edges": [
+  {
+   "from": "investigate",
+   "to": "dataset",
+   "count": 34
+  },
+  {
+   "from": "evaluate",
+   "to": "investigate",
+   "count": 28
+  },
+  {
+   "from": "train",
+   "to": "evaluate",
+   "count": 22
+  },
+  {
+   "from": "field",
+   "to": "dataset",
+   "count": 11
+  },
+  {
+   "from": "dataset",
+   "to": "train",
+   "count": 7
+  },
+  {
+   "from": "evaluate",
+   "to": "ship",
+   "count": 2
+  }
+ ]
+}

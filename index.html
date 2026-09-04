@@ -1,5 +1,375 @@
----
-layout: home
-title: 不斷在解鎖不同的關卡，探索好玩的事物
-subtitle: Keep Rolling
----
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI systems from the physical world — portfolio</title>
+<meta name="description" content="Research portfolio: autonomous UAV sensing, 3D reconstruction and organ-level plant phenotyping, high-resolution pest sensing, and cattle edge intelligence.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%274%27 fill=%27%237ee787%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/landing.css?v=20260830a">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="mark" href="#top" aria-label="Home"><span></span></a>
+  <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation">
+    <span aria-hidden="true"></span>
+  </button>
+  <nav class="nav-links" id="siteNav" aria-label="Primary navigation">
+    <a href="#autonomy">Autonomous UAV</a>
+    <a href="#phenotyping">3D phenotyping</a>
+    <a href="#pest">Pest sensing</a>
+    <a href="#glance">At a glance</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+    <span class="sun" aria-hidden="true"></span>
+  </button>
+</header>
+
+
+<main id="top">
+
+<!-- ================= HERO : the row, day by day ================= -->
+<section class="hero" id="hero">
+  <div class="hero-sticky">
+    <div class="hero-copy" data-hero-copy="a">
+      <p class="eyebrow">Perception for living systems</p>
+      <h1>AI systems from the physical world.</h1>
+      <p class="sub">During my PhD, I built robotic and computer-vision systems to solve problems in real agricultural fields.</p>
+    </div>
+
+    <!-- Orbit concept adapted from Dominik Koch: https://x.com/dominikkoch -->
+    <div class="hero-orbit" id="heroOrbit">
+      <div class="hero-orbit-track">
+        <a class="orbit-node orbit-node--plant" href="#phenotyping" aria-label="Go to 3D plant phenotyping" style="--orbit-index: 0">
+          <span class="orbit-thumb"><img src="media/orbit/plant.webp" alt="" draggable="false"></span>
+          <span class="orbit-label">Crops</span>
+        </a>
+        <a class="orbit-node orbit-node--uav" href="#autonomy" aria-label="Go to autonomous UAV sensing" style="--orbit-index: 1">
+          <span class="orbit-thumb"><img src="media/orbit/uav.webp" alt="" draggable="false"></span>
+          <span class="orbit-label">Autonomy</span>
+        </a>
+        <a class="orbit-node orbit-node--cattle" href="#cattle" aria-label="Go to smart cattle health" style="--orbit-index: 2">
+          <span class="orbit-thumb"><img src="media/orbit/cattle.webp" alt="" draggable="false"></span>
+          <span class="orbit-label">Cattle vision</span>
+        </a>
+        <a class="orbit-node orbit-node--empty" href="#pest" aria-label="Go to high-resolution pest sensing" style="--orbit-index: 3">
+          <span class="orbit-thumb"><i></i></span>
+          <span class="orbit-label">Pest sensing</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true"><span></span>Scroll</div>
+  </div>
+</section>
+
+
+<!-- ================= CHAPTER A : autonomous UAV ================= -->
+<section class="autonomy" id="autonomy" data-steps="3">
+  <div class="autonomy-sticky">
+    <i class="spine-fill" id="fillAutonomy" aria-hidden="true"></i>
+    <div class="autonomy-copy tcol">
+      <p class="eyebrow">01 · Autonomous UAV sensing</p>
+      <h2 class="chapter-title">A flight stack built for the places GPS cannot reach.</h2>
+      <ol class="steps autonomy-steps">
+        <li class="step active" data-autonomy-step="0">
+          <h3>From sim to real</h3>
+        </li>
+        <li class="step" data-autonomy-step="1">
+          <h3>Autonomous mission execution</h3>
+        </li>
+        <li class="step" data-autonomy-step="2">
+          <h3>Turning a mission into a 3D scene</h3>
+        </li>
+      </ol>
+    </div>
+
+    <div class="autonomy-visual" aria-live="polite">
+      <figure class="autonomy-frame active" data-autonomy-frame="0">
+        <video id="uavSimReal" muted loop playsinline preload="none" poster="media/autonomy/sim-real-poster.webp" aria-label="Real-world UAV flight compared with Gazebo simulation">
+          <source src="media/autonomy/sim-real.webm" type="video/webm">
+          <source src="media/autonomy/sim-real.mp4" type="video/mp4">
+        </video>
+        <figcaption class="autonomy-caption">
+          <span><b>Real world ↔ Gazebo</b> · one autonomy stack</span>
+        </figcaption>
+      </figure>
+
+      <figure class="autonomy-frame" data-autonomy-frame="1">
+        <video id="uavFlightVideo" muted loop playsinline preload="none" poster="media/autonomy/flight-poster.webp" aria-label="Autonomous UAV onboard views and estimated trajectory">
+          <source src="media/autonomy/flight-scrub.webm" type="video/webm">
+          <source src="media/autonomy/flight-scrub.mp4" type="video/mp4">
+        </video>
+        <figcaption class="autonomy-caption">
+          <span><b>Onboard views</b> · estimated trajectory</span>
+        </figcaption>
+      </figure>
+
+      <figure class="autonomy-frame" data-autonomy-frame="2">
+        <video id="uavScene" muted loop playsinline preload="none" poster="media/flight/clean/day15_highlight_960x427_poster.jpg" aria-label="The same flight rendered as raw UAV video, SfM sparse points, and 3D Gaussian Splatting">
+          <source src="media/flight/clean/day15_highlight_960w_2x.webm" type="video/webm">
+          <source src="media/flight/clean/day15_highlight_960w_2x.mp4" type="video/mp4">
+        </video>
+        <figcaption class="autonomy-caption">
+          <span><b>UAV | SfM | 3DGS</b> · one camera path</span>
+          <a href="uav-viewer/?nofx&amp;webgl" target="_blank" rel="noopener">Interactive 3D ↗</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHAPTER B : 3D plant phenotyping ================= -->
+<section class="chapter chapter-pinned" id="phenotyping" data-steps="3">
+  <div class="chapter-sticky">
+    <i class="spine-fill" id="fillChapter" aria-hidden="true"></i>
+    <div class="chapter-text tcol">
+      <p class="eyebrow">02 · 3D plant phenotyping</p>
+      <h2 class="chapter-title">From an autonomous flight to organ-level growth curves.</h2>
+      <ol class="steps">
+        <li class="step" data-step="0">
+          <h3>Individual plant extraction and reconstruction</h3>
+          <p>precision 0.933 · mIoU 0.890</p>
+        </li>
+        <li class="step" data-step="1">
+          <h3>3D organ segmentation</h3>
+          <p>PTv3 point clouds · mean AP<sub>50</sub> 0.924</p>
+        </li>
+        <li class="step" data-step="2">
+          <h3>Across-days monitoring</h3>
+          <p>198 plant-days · logistic R² 0.998</p>
+        </li>
+      </ol>
+      <div class="chapter-foot">
+        <a class="cta" href="phenotyping/">Explore the pipeline <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="chapter-visual" id="chapterVisual">
+      <div class="visual-stack">
+        <img class="vis on" data-step="0" data-src="media/stages/plant01/stage_recon_gs_alpha.webp"  alt="" width="900" height="1200">
+        <img class="vis" data-step="1" data-src="media/stages/plant01/stage_organ_seg_alpha.webp" alt="" width="900" height="1200">
+        <div class="vis vis-growth" data-step="2">
+          <video id="galleryBurst" muted loop playsinline preload="none" poster="media/row/b/gallery_burst_poster.jpg" aria-label="One seedling splits into its row, then into eleven capture days, growing from DAT 4 to DAT 24">
+            <source src="media/row/b/gallery_burst_dark.webm" type="video/webm">
+            <source src="media/row/b/gallery_burst_dark.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <p class="visual-caption" id="visualCaption">Row B · plant 01 · 3DGS · DAT 24</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHAPTER C : pest sensing ================= -->
+<section class="chapter chapter-pinned" id="pest" data-steps="2">
+  <div class="chapter-sticky">
+    <i class="spine-fill" aria-hidden="true"></i>
+    <div class="chapter-text tcol">
+      <p class="eyebrow">03 · High-resolution pest sensing</p>
+      <h2 class="chapter-title">An imaging system that makes pest management measurable.</h2>
+      <ol class="steps">
+        <li class="step" data-step="0">
+          <h3>Image analysis for sub-millimetre pests</h3>
+          <p>targets under 1 mm · scanners that vary from user to user</p>
+        </li>
+        <li class="step" data-step="1">
+          <h3>A recognition system built to keep iterating</h3>
+          <p>built with cross-domain experts · simple enough to run on site</p>
+        </li>
+      </ol>
+      <div class="chapter-foot">
+        <a class="cta cta-ghosted" aria-disabled="true">Project map — internal <span aria-hidden="true">·</span></a>
+      </div>
+    </div>
+    <div class="chapter-visual" id="pestVisual">
+      <div class="visual-stack">
+        <img class="vis vis-wide on" data-step="0" data-src="media/pest/tiny_target_story.png?v=20260830a" data-src-narrow="media/pest/tiny_target_story_sm.png?v=20260830a" alt="A sticky-trap scan zoomed down to a one-millimetre insect, and a schematic of the same insect as two different scanners deliver it before it is normalised to one scale" width="1560" height="1340">
+        <div class="vis vis-loop" data-step="1">
+          <div class="loop-visual" id="loopVisual" aria-label="The project's revision loop: a research ring of dataset, training, evaluation and investigation, with a deployment rail carrying releases out to the stations and their scans back in"></div>
+        </div>
+      </div>
+      <p class="visual-caption" id="pestCaption">real scan above · schematic below</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHAPTER D : cattle edge intelligence ================= -->
+<section class="chapter chapter-pinned alt" id="cattle" data-steps="2">
+  <div class="chapter-sticky">
+    <i class="spine-fill" aria-hidden="true"></i>
+    <div class="chapter-text tcol">
+      <p class="eyebrow">04 · Cattle edge intelligence</p>
+      <h2 class="chapter-title">From a tracked face to an individual behavior record.</h2>
+      <ol class="steps">
+        <li class="step" data-step="0">
+          <h3>04–1 · Cattle identity at the edge</h3>
+          <p>tracked ROI · 512-D face embedding · temporal identity vote</p>
+        </li>
+        <li class="step" data-step="1">
+          <h3>04–2 · Field system architecture</h3>
+          <p>multi-camera + IoT · local inference · event-only telemetry</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="chapter-visual" id="cattleVisual">
+      <div class="visual-stack">
+        <div class="vis cow-id-visual on" data-step="0">
+          <div class="cow-id-board" role="img" aria-label="Animated cattle identity pipeline. Tracked cattle faces from a barn video become 512-dimensional embeddings, are inspected in a mock three-dimensional t-SNE projection, and are matched to synthetic individual identities inside the embedding view.">
+            <section class="cow-id-video-stage" aria-label="Tracked cattle video">
+              <header class="cow-stage-head cow-stage-head--overlay">
+                <span><i aria-hidden="true"></i><b>TRACKED VIDEO</b></span>
+                <small>FACE ROI · MULTI-OBJECT TRACKS</small>
+              </header>
+              <video id="cowTrackVideo" muted loop playsinline preload="none" poster="media/cattle/track-roi-poster.webp?v=20260830a" aria-label="Cattle faces detected and tracked in a barn video">
+                <source src="media/cattle/track-roi.webm?v=20260830a" type="video/webm">
+                <source src="media/cattle/track-roi.mp4?v=20260830a" type="video/mp4">
+              </video>
+            </section>
+
+            <div class="cow-feature-stream" aria-hidden="true">
+              <span>TRACKED ROI</span>
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-01.webp?v=20260830a" alt="" width="120" height="168" style="--x:38%;--delay:0s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-02.webp?v=20260830a" alt="" width="120" height="168" style="--x:46%;--delay:-.72s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-03.webp?v=20260830a" alt="" width="120" height="153" style="--x:54%;--delay:-1.44s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-04.webp?v=20260830a" alt="" width="120" height="153" style="--x:62%;--delay:-2.16s">
+            </div>
+
+            <section class="cow-embedding-stage" aria-label="512-dimensional cattle face embedding shown as a three-dimensional t-SNE diagnostic projection">
+              <header class="cow-stage-head">
+                <span><b>512-D FACE EMBEDDING</b></span>
+              </header>
+              <canvas id="cowEmbeddingCanvas" aria-hidden="true"></canvas>
+              <div class="cow-id-cards cow-embed-ids" aria-label="Synthetic cattle identity candidates">
+                <article class="cow-id-card" data-cow-id="A-014" style="--i:0">
+                  <img data-id-crop="0" src="media/cattle/roi-frame-01.webp?v=20260830a" alt="" width="120" height="168">
+                  <span><b>ID A-014</b><small>VOTE · 0.97</small></span>
+                </article>
+                <article class="cow-id-card" data-cow-id="B-087" style="--i:1">
+                  <img data-id-crop="1" src="media/cattle/roi-frame-02.webp?v=20260830a" alt="" width="120" height="168">
+                  <span><b>ID B-087</b><small>VOTE · 0.95</small></span>
+                </article>
+                <article class="cow-id-card" data-cow-id="C-203" style="--i:2">
+                  <img data-id-crop="2" src="media/cattle/roi-frame-03.webp?v=20260830a" alt="" width="120" height="153">
+                  <span><b>ID C-203</b><small>VOTE · 0.96</small></span>
+                </article>
+                <article class="cow-id-card" data-cow-id="D-316" style="--i:3">
+                  <img data-id-crop="3" src="media/cattle/roi-frame-04.webp?v=20260830a" alt="" width="120" height="153">
+                  <span><b>ID D-316</b><small>VOTE · 0.94</small></span>
+                </article>
+              </div>
+              <span class="cow-embed-match" aria-hidden="true">MATCH</span>
+            </section>
+          </div>
+        </div>
+
+        <div class="vis cow-system-visual" data-step="1">
+      <div class="cow-system-map" role="img" aria-label="System architecture: cameras and environmental sensors feed a local edge computer. GPU vision detects, tracks and identifies each cow while sensor readings are normalized. Structured events are stored locally and transmitted securely to the cloud, where the user sees behavior and environment summaries.">
+        <p class="cow-map-kicker cow-k-in">Field inputs</p>
+        <div class="cow-inputs">
+          <div class="cow-source cow-source--camera">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M7 15h24a5 5 0 0 1 5 5v13H12a5 5 0 0 1-5-5Z"/>
+              <circle cx="26" cy="24" r="6"/>
+              <path d="m36 21 7-4v15l-7-4"/>
+            </svg>
+            <span><b>CAM</b><small>MULTI-CAM</small></span>
+          </div>
+          <div class="cow-source cow-source--iot">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="4"/>
+              <path d="M16 16a11 11 0 0 0 0 16M32 16a11 11 0 0 1 0 16M10 10a20 20 0 0 0 0 28M38 10a20 20 0 0 1 0 28"/>
+            </svg>
+            <span><b>IoT</b><small>MICROCLIMATE</small></span>
+          </div>
+        </div>
+
+        <div class="cow-flow cow-flow--in" aria-hidden="true"><i></i><i></i></div>
+
+        <div class="cow-edge">
+          <header class="cow-edge-head">
+            <span><b>LOCAL EDGE AI</b><small>MULTI-STREAM INFERENCE</small></span>
+            <em>VIDEO LOCAL</em>
+          </header>
+          <div class="cow-lane cow-lane--vision">
+            <span class="cow-lane-label">VISION</span>
+            <div class="cow-pipeline">
+              <span><b>DETECT</b><small>ROI</small></span><i aria-hidden="true">›</i>
+              <span><b>TRACK</b><small>ASSOCIATE</small></span><i aria-hidden="true">›</i>
+              <span><b>RE-ID</b><small>EMBED · VOTE</small></span>
+            </div>
+          </div>
+          <div class="cow-lane cow-lane--sensor">
+            <span class="cow-lane-label">IoT</span>
+            <p>INGEST <i aria-hidden="true">›</i> NORMALIZE <i aria-hidden="true">›</i> FUSE</p>
+          </div>
+          <div class="cow-event">
+            <span class="cow-event-mark" aria-hidden="true"></span>
+            <span><b>INDIVIDUAL EVENT</b><small>IDENTITY · DURATION · BEHAVIOR · THI</small></span>
+          </div>
+        </div>
+
+        <div class="cow-flow cow-flow--out" aria-hidden="true"><i></i><i></i></div>
+
+        <p class="cow-map-kicker cow-k-out">Data layer</p>
+        <div class="cow-data-stack">
+          <div class="cow-data-layer">
+            <div class="cow-sink cow-sink--db">
+              <span class="cow-db-icon" aria-hidden="true"></span>
+              <span><b>EVENT STORE</b><small>ON SITE</small></span>
+            </div>
+            <div class="cow-sink cow-sink--cloud">
+              <svg viewBox="0 0 48 36" aria-hidden="true"><path d="M13 31h25a8 8 0 0 0 1-16 13 13 0 0 0-25-3A9.5 9.5 0 0 0 13 31Z"/></svg>
+              <span><b>CLOUD</b><small>SECURE</small></span>
+            </div>
+          </div>
+          <div class="cow-flow cow-flow--down" aria-hidden="true"><i></i><i></i></div>
+          <div class="cow-user">
+            <div class="cow-user-screen" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <b>USER</b>
+            <small>BEHAVIOR · ENVIRONMENT</small>
+          </div>
+        </div>
+        <p class="cow-system-note">VIDEO REMAINS AT EDGE · ONLY STRUCTURED EVENTS LEAVE SITE</p>
+      </div>
+        </div>
+      </div>
+      <p class="visual-caption" id="cattleCaption">tracked ROI → 512-D embedding → identity match</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AT A GLANCE (bento) ================= -->
+<section class="glance" id="glance">
+  <div class="section-head reveal">
+    <p class="eyebrow">At a glance</p>
+    <h2 class="chapter-title">Research depth, product habits.</h2>
+  </div>
+  <div class="bento">
+    <article class="tile reveal span-2"><h3>Publications</h3><p class="placeholder">[ journal / conference list — to fill ]</p></article>
+    <article class="tile reveal"><h3>Open source</h3><p class="placeholder">[ repos, dashboards, tools ]</p></article>
+    <article class="tile reveal"><h3>Field deployments</h3><p class="placeholder">[ greenhouses, seasons, cohorts ]</p></article>
+    <article class="tile reveal"><h3>Stack</h3><p>3DGS · COLMAP · SAM3 · PyTorch · Point Transformer · FastAPI · PyQt · Docker</p></article>
+    <article class="tile reveal span-2"><h3>Talks &amp; teaching</h3><p class="placeholder">[ to fill ]</p></article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div>
+    <p class="eyebrow">Contact</p>
+    <p class="placeholder">[ email · GitHub · Google Scholar · LinkedIn ]</p>
+  </div>
+  <p class="fine">© 2026 · Built as a static site, no trackers.</p>
+</footer>
+
+<script src="js/cattle-id.js?v=20260830a"></script>
+<script src="js/landing.js?v=20260830a"></script>
+<script src="js/pestloop.js?v=20260830a"></script>
+</body>
+</html>
