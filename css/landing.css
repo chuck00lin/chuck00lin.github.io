@@ -815,7 +815,16 @@ ol, ul { padding: 0; list-style: none; }
      clipped by .chapter-sticky's overflow:hidden. max-height rather than min(), because
      it degrades to `none` where the grid row is indefinite instead of collapsing the
      box to zero -- which is how chapter 01 lost its media once already. */
-  .chapter-visual { height: 40vh; height: 40svh; max-height: 100%; min-height: 0; order: 1; }
+  /* 2026-09-05: use the whole row the copy leaves (was 40svh). The row is definite because
+     .chapter-sticky is 100svh with rows `auto minmax(0,1fr)`, which is what #cattle relies on.
+     On a 393x659 phone the growth video (198px) and the pest loop (238px) fit unscaled. */
+  .chapter-visual { height: 100%; max-height: 100%; min-height: 0; order: 1; }
+  /* the growth video and the loop SVG size by width; inside an auto grid row a percentage
+     max-height resolves against their own intrinsic height, so they overran the row and
+     covered the caption. A 1fr row makes the row (and therefore the cap) the slot height. */
+  .vis-growth, .vis-loop, .loop-visual { grid-template-rows: minmax(0, 1fr); min-height: 0; }
+  .vis-growth > video { max-height: 100%; }
+  .loop-svg { width: 100%; height: 100%; max-height: 100%; }
   /* chapter 04's visual is a fixed composition that gets scaled to fit, so give it the
      whole row instead of a set svh -- otherwise it scales down against space that is
      sitting empty below it (0.41 at 375x667 while 208px went unused) */
@@ -988,9 +997,11 @@ ol, ul { padding: 0; list-style: none; }
   .autonomy-sticky, .chapter-sticky {
     gap: 8px; padding: calc(90px + env(safe-area-inset-top)) 14px 12px calc(var(--spine-x) + 22px); align-content: start;
   }
-  .autonomy-visual, .chapter-visual {
+  .autonomy-visual {
     height: 32svh; max-height: 100%; min-height: 0; aspect-ratio: auto;
   }
+  /* pinned chapters keep the whole remaining row here too (see the 960px rule) */
+  .chapter-visual { height: 100%; max-height: 100%; min-height: 0; aspect-ratio: auto; }
   .autonomy-copy .chapter-title, .chapter-text .chapter-title, .flat-text .chapter-title {
     font-size: clamp(1.18rem, 4.8vw, 1.5rem); line-height: 1.06;
   }
