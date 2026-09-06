@@ -564,9 +564,9 @@ ol, ul { padding: 0; list-style: none; }
 }
 .cow-system-map {
   position: relative; min-height: 430px; display: grid; align-items: center;
-  grid-template-columns: minmax(150px, .9fr) 40px minmax(348px, 2.1fr) 40px minmax(172px, 1fr);
+  grid-template-columns: minmax(176px, .9fr) 24px minmax(420px, 2.4fr) 24px minmax(190px, 1fr);
   grid-template-rows: auto minmax(0, 1fr) auto;
-  column-gap: 10px; row-gap: 14px; font-family: var(--mono);
+  column-gap: 8px; row-gap: 14px; font-family: var(--mono);
 }
 /* the two side columns are different heights, so centring them put their kickers at
    different y. Placing both on row 1 lines the labels up whatever the column holds. */
@@ -578,7 +578,7 @@ ol, ul { padding: 0; list-style: none; }
 .cow-flow--out { grid-area: 2 / 4; }
 .cow-data-stack { grid-area: 2 / 5; }
 .cow-map-kicker {
-  margin: 0; color: var(--muted); font-size: .78rem; font-weight: 650;
+  margin: 0; color: var(--muted); font-size: .84rem; font-weight: 650;
   letter-spacing: .14em; text-transform: uppercase;
 }
 .cow-inputs, .cow-data-layer { min-width: 0; }
@@ -593,10 +593,10 @@ ol, ul { padding: 0; list-style: none; }
 }
 .cow-source span, .cow-sink span, .cow-event span { min-width: 0; }
 .cow-source b, .cow-sink b, .cow-user > b {
-  display: block; color: var(--text-2); font-size: .95rem; letter-spacing: .07em;
+  display: block; color: var(--text-2); font-size: 1.02rem; letter-spacing: .07em;
 }
 .cow-source small, .cow-sink small, .cow-user > small, .cow-event small {
-  display: block; margin-top: 3px; color: var(--muted); font-size: .78rem; line-height: 1.35;
+  display: block; margin-top: 3px; color: var(--muted); font-size: .84rem; line-height: 1.35;
 }
 .cow-source--camera { border-color: color-mix(in srgb, var(--accent) 42%, var(--line-2)); }
 .cow-source--iot { border-color: color-mix(in srgb, var(--accent-2) 42%, var(--line-2)); }
@@ -629,27 +629,27 @@ ol, ul { padding: 0; list-style: none; }
   box-shadow: 0 18px 55px rgba(0,0,0,.22), inset 0 0 34px color-mix(in srgb, var(--accent) 4%, transparent);
 }
 .cow-edge-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-.cow-edge-head span b { display: block; color: var(--accent); font-size: 1.02rem; letter-spacing: .08em; }
-.cow-edge-head span small { display: block; margin-top: 3px; color: var(--muted); font: .78rem var(--mono); }
+.cow-edge-head span b { display: block; color: var(--accent); font-size: 1.12rem; letter-spacing: .08em; }
+.cow-edge-head span small { display: block; margin-top: 3px; color: var(--muted); font: .84rem var(--mono); }
 .cow-edge-head em {
   padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--line)); border-radius: 999px;
   color: var(--accent); font: 600 .7rem var(--mono); font-style: normal; letter-spacing: .05em; white-space: nowrap;
 }
-.cow-lane { display: grid; grid-template-columns: 58px minmax(0, 1fr); align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
-.cow-lane-label { color: var(--muted); font-size: .74rem; letter-spacing: .1em; }
+.cow-lane { display: grid; grid-template-columns: 60px minmax(0, 1fr); align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.cow-lane-label { color: var(--muted); font-size: .8rem; letter-spacing: .1em; }
 .cow-pipeline { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 8px; }
-.cow-pipeline > span { min-width: 0; padding: 10px 6px; border: 1px solid var(--line-2); border-radius: 9px; text-align: center; }
-.cow-pipeline b { display: block; color: var(--text-2); font-size: .82rem; letter-spacing: .03em; }
-.cow-pipeline small { display: block; margin-top: 3px; color: var(--muted); font-size: .7rem; line-height: 1.2; }
+.cow-pipeline > span { min-width: 0; padding: 10px 5px; border: 1px solid var(--line-2); border-radius: 9px; text-align: center; }
+.cow-pipeline b { display: block; color: var(--text-2); font-size: .9rem; letter-spacing: .03em; white-space: nowrap; }
+.cow-pipeline small { display: block; margin-top: 3px; color: var(--muted); font-size: .72rem; line-height: 1.2; }
 .cow-pipeline > i, .cow-lane--sensor p i { color: var(--accent); font-style: normal; }
-.cow-lane--sensor p { color: var(--text-2); font-size: .8rem; letter-spacing: .02em; }
+.cow-lane--sensor p { color: var(--text-2); font-size: .88rem; letter-spacing: .02em; }
 .cow-lane--sensor p i { margin: 0 5px; color: var(--accent-2); }
 .cow-event {
   display: flex; align-items: center; gap: 10px; margin-top: 6px; padding: 11px 12px;
   border-radius: 11px; background: color-mix(in srgb, var(--accent) 9%, var(--surface));
 }
 .cow-event-mark { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-.cow-event b { display: block; color: var(--accent); font-size: .86rem; letter-spacing: .06em; }
+.cow-event b { display: block; color: var(--accent); font-size: .94rem; letter-spacing: .06em; }
 
 .cow-data-stack { min-width: 0; display: grid; align-content: center; }
 .cow-sink { padding: 12px 10px; }
@@ -673,7 +673,7 @@ ol, ul { padding: 0; list-style: none; }
 .cow-user-screen i:nth-child(3) { height: 54%; background: var(--accent-2); } .cow-user-screen i:nth-child(4) { height: 84%; }
 .cow-system-note {
   grid-area: 3 / 1 / 4 / 6; margin: 0; color: var(--muted);
-  font-size: .72rem; letter-spacing: .12em; text-align: center;
+  font-size: .78rem; letter-spacing: .12em; text-align: center;
 }
 
 #cattle .flat-grid { grid-template-columns: minmax(260px, 400px) minmax(0, 1fr); gap: 44px; }
@@ -740,17 +740,22 @@ ol, ul { padding: 0; list-style: none; }
 .loop-live .loop-node-ship .loop-dot, .loop-live .loop-node-field .loop-dot {
   stroke-dasharray: none; stroke: var(--accent-2);
 }
-.loop-label { fill: var(--text-2); font: 600 15px var(--mono); text-anchor: middle; letter-spacing: .04em; }
+.loop-label { fill: var(--text-2); font: 600 18px var(--mono); text-anchor: middle; letter-spacing: .04em; }
 .loop-pulse { fill: var(--accent); opacity: .9; }
 .loop-pulse-rail { fill: var(--accent-2); }
 .loop-band { opacity: 0; transition: opacity .8s var(--ease); }
 .loop-live .loop-band { opacity: 1; }
 .loop-beat-dot { fill: var(--bg); stroke: var(--accent-2); stroke-width: 2; }
 .loop-beat {
-  fill: var(--text-2); font: 600 12px var(--mono); text-anchor: middle;
+  fill: var(--text-2); font: 600 14px var(--mono); text-anchor: middle;
   letter-spacing: .14em; text-transform: uppercase;
 }
-.loop-beat-cap { fill: var(--muted); font: 13px var(--mono); text-anchor: middle; }
+.loop-beat-cap { fill: var(--muted); font: 15px var(--mono); text-anchor: middle; }
+/* phone: pestloop.js switches to a square 620x600 layout without the rail captions,
+   so the diagram renders ~1.5x larger; the labels get a size that survives the scale */
+.loop-compact .loop-label { font-size: 23px; }
+.loop-compact .loop-beat { font-size: 15px; }
+.loop-compact .lc-cap { font-size: 16px; }
 .loop-chevron { fill: none; stroke: var(--accent-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: .75; }
 .cta-ghosted { background: transparent; border: 1px solid var(--line-2); color: var(--muted); cursor: default; }
 .cta-ghosted:hover { transform: none; }
@@ -762,8 +767,8 @@ ol, ul { padding: 0; list-style: none; }
 .lc-bug ellipse, .lc-bug circle { fill: var(--text-2); }
 .lc-bugline { fill: none; stroke: var(--text-2); stroke-width: 1.3; stroke-linecap: round; }
 .lc-chip { fill: rgba(10,14,18,.85); stroke-width: 2; }
-.lc-chiptext { font: 600 15px var(--mono); text-anchor: middle; }
-.lc-cap { fill: var(--muted); font: 13px var(--mono); text-anchor: middle; letter-spacing: .12em; text-transform: uppercase; }
+.lc-chiptext { font: 600 16px var(--mono); text-anchor: middle; }
+.lc-cap { fill: var(--muted); font: 14px var(--mono); text-anchor: middle; letter-spacing: .12em; text-transform: uppercase; }
 .lc-barnum { fill: var(--text-2); font: 12px var(--mono); text-anchor: middle; }
 .lc-scene { transition: opacity .3s linear; }
 
@@ -773,6 +778,15 @@ ol, ul { padding: 0; list-style: none; }
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
 }
 .fine { font-size: .82rem; color: var(--muted); }
+
+/* ---------- desktop type (2026-09-05: CEO wanted the desktop copy larger) ---------- */
+@media (min-width: 961px) {
+  body { font-size: 18px; }
+  .eyebrow { font-size: .82rem; }
+  .step h3 { font-size: 1.2rem; }
+  .step p { font-size: .95rem; }
+  .visual-caption { font-size: .82rem; }
+}
 
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {

@@ -17,11 +17,16 @@
   if (!host) return;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var NS = 'http://www.w3.org/2000/svg';
-  var W = 900, H = 640;
-  var CX = 400, CY = 282, R = 186;
+  /* Phone (<=560px): the 900x640 layout scaled to a 335px column left the labels at
+     ~7px. A near-square 620x600 layout without the rail captions renders ~1.5x larger
+     in the same slot. Chosen once at build; a resize across the breakpoint is rare. */
+  var compact = window.matchMedia('(max-width: 560px)').matches;
+  var W = compact ? 620 : 900, H = compact ? 600 : 640;
+  var CX = compact ? 300 : 400, CY = compact ? 262 : 282, R = compact ? 168 : 186;
   var ANGLE = { dataset: 195, train: 265, evaluate: 335, investigate: 75 };
-  var OUTSIDE = { field: [92, 128], ship: [800, 424] };
-  var RAIL_Y = 560, RAIL_R = 30;
+  var OUTSIDE = compact ? { field: [66, 96], ship: [566, 404] } : { field: [92, 128], ship: [800, 424] };
+  var RAIL_Y = compact ? 528 : 560, RAIL_R = compact ? 26 : 30;
+  var CHEVRON_DX = compact ? 74 : 109;
 
   /* Node labels the map exports are internal shorthand; these are the public ones. */
   var LABELS = {
@@ -30,7 +35,11 @@
   };
 
   /* The deployment half of the loop, read right-to-left along the rail. */
-  var BEATS = [
+  var BEATS = compact ? [
+    [458, 'OTA UPDATE', []],
+    [311, 'IN SERVICE', []],
+    [164, 'AUTO-UPLOAD', []],
+  ] : [
     [648, 'OTA UPDATE', ['The approved model ships', 'to every station.']],
     [430, 'IN SERVICE', ['Traps are scanned as', 'part of routine work.']],
     [212, 'AUTO-UPLOAD', ['Every scan comes back', 'as training data.']],
@@ -82,6 +91,7 @@
   function build() {
     svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'loop-svg', role: 'img' }, host);
     host.appendChild(svg);
+    host.classList.toggle('loop-compact', compact);
     edgesG = el('g', {}, svg);
     pulsesG = el('g', {}, svg);
 
@@ -109,7 +119,7 @@
         el('text', { x: b[0], y: RAIL_Y + 27 + j * 19, class: 'loop-beat-cap' }, band).textContent = line;
       });
       // the rail runs right-to-left; a chevron says so even when nothing is moving
-      var cx = b[0] + 109;
+      var cx = b[0] + CHEVRON_DX;
       el('path', { d: 'M' + (cx + 5) + ' ' + (RAIL_Y - 6) + ' L' + (cx - 5) + ' ' + RAIL_Y +
                       ' L' + (cx + 5) + ' ' + (RAIL_Y + 6), class: 'loop-chevron' }, band);
     });
