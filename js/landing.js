@@ -126,8 +126,18 @@
       var H = {
         cfg: cfg, el: hostEl, sec: sec, fill: fill, traveler: traveler,
         height: hr.height, enterI: -1, exitI: -1, stepEls: [], activeStep: -2,
-        foot: hostEl.querySelector('.chapter-foot'),
+        foot: hostEl.querySelector('.chapter-foot'), visEls: [],
       };
+      // one visual per step, in step order, so scrubVisuals can address them by index
+      if (cfg.frames) {
+        hostEl.querySelectorAll(cfg.frames).forEach(function (f) {
+          H.visEls[parseInt(f.getAttribute('data-autonomy-frame'), 10)] = f;
+        });
+      } else if (cfg.vis) {
+        document.querySelectorAll(cfg.vis).forEach(function (v) {
+          H.visEls[parseInt(v.getAttribute('data-step'), 10)] = v;
+        });
+      }
       function localY(el, extra) {
         return el.getBoundingClientRect().top - hr.top + (extra || 0);
       }
@@ -303,6 +313,42 @@
     });
   }
 
+  /* 2026-09-07: the visuals follow the scroll instead of swapping at a boundary.
+     Testers read a pinned chapter as "the page is stuck" because for a whole screen of
+     scrolling nothing on screen moved except a hairline. Now every scroll tick moves the
+     picture: the active visual rises slowly through its band, and at the boundary the next
+     one rises in from below while the old one continues up and fades. All of it is a pure
+     function of scroll position, so it reverses when the user scrolls back. */
+  var HANDOFF = 0.18;   // half-width of the swap, in step units (the swap spans ~36% of a band)
+  function scrubVisuals(H, u) {
+    var n = H.visEls.length;
+    if (!n) return;
+    var phone = narrowMQ.matches;
+    var slide = phone ? 28 : 48, drift = phone ? 14 : 30;
+    for (var j = 0; j < n; j++) {
+      var el = H.visEls[j];
+      if (!el) continue;
+      var d = u - j;
+      var inn = j === 0 ? 1 : clamp((d + HANDOFF) / (2 * HANDOFF), 0, 1);
+      var out = j === n - 1 ? 1 : clamp((j + 1 + HANDOFF - u) / (2 * HANDOFF), 0, 1);
+      var o = inn * out;
+      // never below its rest position once fully in, so it cannot ride down onto the caption
+      var yPx = (1 - inn) * slide - (1 - out) * slide - clamp(d, 0, 1) * drift;
+      el.style.opacity = o.toFixed(3);
+      el.style.transform = 'translate3d(0,' + yPx.toFixed(1) + 'px,0)';
+      el.style.visibility = o > 0.005 ? '' : 'hidden';
+    }
+  }
+
+  // continuous step coordinate for a pinned host: -1..0 while the chapter slides in,
+  // j..j+1 across step j's band, N once the chapter has released
+  function hostProgress(H, k, t) {
+    if (k < H.enterI) return -1;
+    if (k >= H.exitI) return H.stepEls.length;
+    var st = stations[k];
+    return st.kind === 'enter' ? -1 + t : st.stepIdx + t;
+  }
+
   function render(y) {
     refreshStepLocals();
     var pos = locate(y);
@@ -328,6 +374,7 @@
           if (stations[i].kind === 'step' && stations[i].host === H) idx = stations[i].stepIdx;
         }
         applyChapterStep(H, idx === -1 ? 0 : idx);
+        if (H.cfg.pinned) scrubVisuals(H, hostProgress(H, k, t));
       }
     });
   }

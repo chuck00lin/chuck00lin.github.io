@@ -126,7 +126,6 @@ ol, ul { padding: 0; list-style: none; }
 .hero-copy {
   grid-row: 1; grid-column: 1; align-self: start; justify-self: center;
   text-align: center; max-width: 980px; margin: 5vh auto 0;
-  padding: 0 24px; will-change: opacity, transform; position: relative; z-index: 3;
 }
 .hero-copy h1 {
   font-size: clamp(2.4rem, 5.6vw, 5.2rem); font-weight: 650; letter-spacing: -.035em; line-height: 1.02;
@@ -297,7 +296,7 @@ ol, ul { padding: 0; list-style: none; }
 .autonomy-frame {
   position: absolute; inset: 0; margin: 0; opacity: 0; pointer-events: none;
   display: grid; place-items: center;
-  transform: none; transition: opacity .45s var(--ease);
+  transform: none; transition: opacity .12s linear, transform .12s linear;  /* scrubbed, see .vis */
 }
 .autonomy-frame.active { opacity: 1; pointer-events: auto; transform: none; z-index: 2; }
 /* The element box is sized to the picture (auto + max-*) rather than to the column,
@@ -401,7 +400,9 @@ ol, ul { padding: 0; list-style: none; }
 .vis {
   position: absolute; inset: 0; margin: auto; height: 100%; width: auto; max-width: 100%;
   object-fit: contain; opacity: 0; transform: none;
-  transition: opacity .45s var(--ease);
+  /* landing.js drives opacity/transform from the scroll position (scrubVisuals); the short
+     linear transition only smooths the ~100px jumps of a notched mouse wheel */
+  transition: opacity .12s linear, transform .12s linear;
   filter: drop-shadow(0 30px 40px rgba(0,0,0,.35));
 }
 .vis.on { opacity: 1; transform: none; }
