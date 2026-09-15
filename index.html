@@ -6,7 +6,7 @@
 <title>AI systems from the physical world — portfolio</title>
 <meta name="description" content="Research portfolio: autonomous UAV sensing, 3D reconstruction and organ-level plant phenotyping, high-resolution pest sensing, and cattle edge intelligence.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%274%27 fill=%27%237ee787%27/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/landing.css?v=20260907b">
+<link rel="stylesheet" href="css/landing.css?v=20260915a">
 </head>
 <body>
 
@@ -53,8 +53,8 @@
           <span class="orbit-thumb"><img src="media/orbit/cattle.webp" alt="" draggable="false"></span>
           <span class="orbit-label">Cattle vision</span>
         </a>
-        <a class="orbit-node orbit-node--empty" href="#pest" aria-label="Go to high-resolution pest sensing" style="--orbit-index: 3">
-          <span class="orbit-thumb"><i></i></span>
+        <a class="orbit-node orbit-node--pest" href="#pest" aria-label="Go to high-resolution pest sensing" style="--orbit-index: 3">
+          <span class="orbit-thumb"><img src="media/orbit/pest.webp" alt="" draggable="false"></span>
           <span class="orbit-label">Pest sensing</span>
         </a>
       </div>
@@ -185,7 +185,7 @@
     </div>
     <div class="chapter-visual" id="pestVisual">
       <div class="visual-stack">
-        <img class="vis vis-wide on" data-step="0" data-src="media/pest/tiny_target_story.png?v=20260907b" data-src-narrow="media/pest/tiny_target_story_sm.png?v=20260907b" alt="A sticky-trap scan zoomed down to a one-millimetre insect, and a schematic of the same insect as two different scanners deliver it before it is normalised to one scale" width="1560" height="1340">
+        <img class="vis vis-wide on" data-step="0" data-src="media/pest/tiny_target_story.png?v=20260915a" data-src-narrow="media/pest/tiny_target_story_sm.png?v=20260915a" alt="A sticky-trap scan zoomed down to a one-millimetre insect, and a schematic of the same insect as two different scanners deliver it before it is normalised to one scale" width="1560" height="1340">
         <div class="vis vis-loop" data-step="1">
           <div class="loop-visual" id="loopVisual" aria-label="The project's revision loop: a research ring of dataset, training, evaluation and investigation, with a deployment rail carrying releases out to the stations and their scans back in"></div>
         </div>
@@ -223,18 +223,18 @@
                 <span><i aria-hidden="true"></i><b>TRACKED VIDEO</b></span>
                 <small>FACE ROI · MULTI-OBJECT TRACKS</small>
               </header>
-              <video id="cowTrackVideo" muted loop playsinline preload="none" poster="media/cattle/track-roi-poster.webp?v=20260907b" aria-label="Cattle faces detected and tracked in a barn video">
-                <source src="media/cattle/track-roi.webm?v=20260907b" type="video/webm">
-                <source src="media/cattle/track-roi.mp4?v=20260907b" type="video/mp4">
+              <video id="cowTrackVideo" muted loop playsinline preload="none" poster="media/cattle/track-roi-poster.webp?v=20260915a" aria-label="Cattle faces detected and tracked in a barn video">
+                <source src="media/cattle/track-roi.webm?v=20260915a" type="video/webm">
+                <source src="media/cattle/track-roi.mp4?v=20260915a" type="video/mp4">
               </video>
             </section>
 
             <div class="cow-feature-stream" aria-hidden="true">
               <span>TRACKED ROI</span>
-              <img class="cow-feature-chip" src="media/cattle/roi-frame-01.webp?v=20260907b" alt="" width="120" height="168" style="--x:38%;--delay:0s">
-              <img class="cow-feature-chip" src="media/cattle/roi-frame-02.webp?v=20260907b" alt="" width="120" height="168" style="--x:46%;--delay:-.72s">
-              <img class="cow-feature-chip" src="media/cattle/roi-frame-03.webp?v=20260907b" alt="" width="120" height="153" style="--x:54%;--delay:-1.44s">
-              <img class="cow-feature-chip" src="media/cattle/roi-frame-04.webp?v=20260907b" alt="" width="120" height="153" style="--x:62%;--delay:-2.16s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-01.webp?v=20260915a" alt="" width="120" height="168" style="--x:38%;--delay:0s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-02.webp?v=20260915a" alt="" width="120" height="168" style="--x:46%;--delay:-.72s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-03.webp?v=20260915a" alt="" width="120" height="153" style="--x:54%;--delay:-1.44s">
+              <img class="cow-feature-chip" src="media/cattle/roi-frame-04.webp?v=20260915a" alt="" width="120" height="153" style="--x:62%;--delay:-2.16s">
             </div>
 
             <section class="cow-embedding-stage" aria-label="512-dimensional cattle face embedding shown as a three-dimensional t-SNE diagnostic projection">
@@ -244,19 +244,19 @@
               <canvas id="cowEmbeddingCanvas" aria-hidden="true"></canvas>
               <div class="cow-id-cards cow-embed-ids" aria-label="Synthetic cattle identity candidates">
                 <article class="cow-id-card" data-cow-id="A-014" style="--i:0">
-                  <img data-id-crop="0" src="media/cattle/roi-frame-01.webp?v=20260907b" alt="" width="120" height="168">
+                  <img data-id-crop="0" src="media/cattle/roi-frame-01.webp?v=20260915a" alt="" width="120" height="168">
                   <span><b>ID A-014</b><small>VOTE · 0.97</small></span>
                 </article>
                 <article class="cow-id-card" data-cow-id="B-087" style="--i:1">
-                  <img data-id-crop="1" src="media/cattle/roi-frame-02.webp?v=20260907b" alt="" width="120" height="168">
+                  <img data-id-crop="1" src="media/cattle/roi-frame-02.webp?v=20260915a" alt="" width="120" height="168">
                   <span><b>ID B-087</b><small>VOTE · 0.95</small></span>
                 </article>
                 <article class="cow-id-card" data-cow-id="C-203" style="--i:2">
-                  <img data-id-crop="2" src="media/cattle/roi-frame-03.webp?v=20260907b" alt="" width="120" height="153">
+                  <img data-id-crop="2" src="media/cattle/roi-frame-03.webp?v=20260915a" alt="" width="120" height="153">
                   <span><b>ID C-203</b><small>VOTE · 0.96</small></span>
                 </article>
                 <article class="cow-id-card" data-cow-id="D-316" style="--i:3">
-                  <img data-id-crop="3" src="media/cattle/roi-frame-04.webp?v=20260907b" alt="" width="120" height="153">
+                  <img data-id-crop="3" src="media/cattle/roi-frame-04.webp?v=20260915a" alt="" width="120" height="153">
                   <span><b>ID D-316</b><small>VOTE · 0.94</small></span>
                 </article>
               </div>
@@ -350,11 +350,31 @@
     <h2 class="chapter-title">Research depth, product habits.</h2>
   </div>
   <div class="bento">
-    <article class="tile reveal span-2"><h3>Publications</h3><p class="placeholder">[ journal / conference list — to fill ]</p></article>
-    <article class="tile reveal"><h3>Open source</h3><p class="placeholder">[ repos, dashboards, tools ]</p></article>
-    <article class="tile reveal"><h3>Field deployments</h3><p class="placeholder">[ greenhouses, seasons, cohorts ]</p></article>
-    <article class="tile reveal"><h3>Stack</h3><p>3DGS · COLMAP · SAM3 · PyTorch · Point Transformer · FastAPI · PyQt · Docker</p></article>
-    <article class="tile reveal span-2"><h3>Talks &amp; teaching</h3><p class="placeholder">[ to fill ]</p></article>
+    <article class="tile reveal span-2"><h3>Publications</h3>
+      <ul class="tile-list">
+        <li><a href="https://doi.org/10.3389/fpls.2026.1783465" target="_blank" rel="noopener">From 3DGS scenes to plant traits: a scalable extraction and segmentation framework for muskmelon phenotyping</a><small>Frontiers in Plant Science · 2026</small></li>
+        <li><a href="https://doi.org/10.3390/drones10030205" target="_blank" rel="noopener">Development of a visual SLAM-based autonomous UAV system for greenhouse plant monitoring</a><small>Drones · 2026</small></li>
+        <li>PhD thesis — Autonomous vision-based UAV system for 3D phenotyping and growth monitoring of greenhouse muskmelon<small>National Taiwan University · 2026</small></li>
+      </ul>
+    </article>
+    <article class="tile reveal"><h3>Open source</h3>
+      <ul class="tile-list">
+        <li><a href="https://github.com/chuck00lin/gs-recon-tool" target="_blank" rel="noopener">gs-recon-tool</a><small>video → SfM → 3D Gaussian Splatting, CLI + GUI</small></li>
+        <li><a href="https://github.com/chuck00lin/canvai" target="_blank" rel="noopener">canvai</a><small>shared visual canvas for MCP agents</small></li>
+        <li><a href="https://github.com/chuck00lin/UAV_nav" target="_blank" rel="noopener">UAV_nav</a><small>Pixhawk · ROS · ArduPilot navigation</small></li>
+      </ul>
+    </article>
+    <article class="tile reveal"><h3>Field deployments</h3>
+      <ul class="tile-list">
+        <li>Greenhouse muskmelon, NTU experimental farm<small>autonomous UAV + 3DGS phenotyping, multi-season, 198 plant-days</small></li>
+        <li>Pest imaging<small>scanner-based sticky-trap pipeline, built to run on site</small></li>
+        <li>Cattle barn<small>multi-camera edge system, video never leaves the site</small></li>
+      </ul>
+    </article>
+    <article class="tile reveal span-2"><h3>Stack</h3><p>3DGS · COLMAP · SAM3 · PyTorch · Point Transformer · ROS2 · PX4 · FastAPI · PyQt · Docker</p></article>
+    <article class="tile reveal span-2"><h3>Education</h3>
+      <p>PhD, Bio-Industrial Mechatronics Engineering, National Taiwan University (2026). Advisor: Ta-Te Lin. Research spanned autonomous UAV sensing, visual SLAM, and 3D plant phenotyping from Gaussian Splatting reconstructions, taken from simulation to working greenhouse deployments.</p>
+    </article>
   </div>
 </section>
 
@@ -363,13 +383,18 @@
 <footer class="footer">
   <div>
     <p class="eyebrow">Contact</p>
-    <p class="placeholder">[ email · GitHub · Google Scholar · LinkedIn ]</p>
+    <p class="footer-name">Jing-Heng Lin</p>
+    <p class="footer-links">
+      <a href="https://github.com/chuck00lin" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://orcid.org/0009-0002-2277-3760" target="_blank" rel="noopener">ORCID</a>
+      <a href="https://doi.org/10.3389/fpls.2026.1783465" target="_blank" rel="noopener">Latest paper</a>
+    </p>
   </div>
-  <p class="fine">© 2026 · Built as a static site, no trackers.</p>
+  <p class="fine">© 2026 Jing-Heng Lin · Static site, no trackers.</p>
 </footer>
 
-<script src="js/cattle-id.js?v=20260907b"></script>
-<script src="js/landing.js?v=20260907b"></script>
-<script src="js/pestloop.js?v=20260907b"></script>
+<script src="js/cattle-id.js?v=20260915a"></script>
+<script src="js/landing.js?v=20260915a"></script>
+<script src="js/pestloop.js?v=20260915a"></script>
 </body>
 </html>
