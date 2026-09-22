@@ -6,9 +6,65 @@
 <title>AI systems from the physical world — portfolio</title>
 <meta name="description" content="Research portfolio: autonomous UAV sensing, 3D reconstruction and organ-level plant phenotyping, high-resolution pest sensing, and cattle edge intelligence.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 rx=%274%27 fill=%27%237ee787%27/%3E%3C/svg%3E">
+<!-- boot loader: shown while the stylesheet / first assets are still on their way (2026-09-22) -->
+<style id="bootStyle">
+  :root { --boot-bg: #07090c; --boot-fg: #7ee787; --boot-line: rgba(126,231,135,.28); }
+  :root[data-theme="light"] { --boot-bg: #f6f6f4; --boot-fg: #2f7d32; --boot-line: rgba(47,125,50,.3); }
+  #boot { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: var(--boot-bg);
+          opacity: 0; animation: boot-in .3s ease .4s forwards; transition: opacity .35s ease; }
+  #boot.out { opacity: 0 !important; animation: none; pointer-events: none; }
+  .boot-orbit { position: relative; width: 84px; height: 52px; }
+  .boot-orbit::before { content: ""; position: absolute; inset: 0; border: 1px solid var(--boot-line); border-radius: 50%; }
+  .boot-orbit i { position: absolute; left: 50%; top: 50%; width: 84px; height: 52px; margin: -26px 0 0 -42px;
+                  animation: boot-spin 1.6s linear infinite; }
+  .boot-orbit i::after { content: ""; position: absolute; left: 50%; top: -4px; width: 9px; height: 9px; margin-left: -4.5px;
+                         border-radius: 50%; background: var(--boot-fg); box-shadow: 0 0 12px var(--boot-fg); }
+  .boot-label { margin-top: 18px; font: 600 .66rem/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .14em;
+                text-transform: uppercase; color: var(--boot-fg); opacity: .8; }
+  @keyframes boot-in { to { opacity: 1; } }
+  @keyframes boot-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .boot-orbit i { animation: none; }
+    .boot-orbit i::after { animation: boot-pulse 1.2s ease-in-out infinite; }
+    @keyframes boot-pulse { 50% { opacity: .25; } }
+  }
+</style>
+<script>
+  /* pick the theme before first paint so the loader matches the page that follows */
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search).get('theme');
+      var t = q || localStorage.getItem('pf-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+    } catch (e) {}
+  })();
+</script>
 <link rel="stylesheet" href="css/landing.css?v=20260915a">
 </head>
 <body>
+
+<div id="boot" role="status" aria-live="polite" aria-label="Loading">
+  <div><div class="boot-orbit" aria-hidden="true"><i></i></div><p class="boot-label">Loading</p></div>
+</div>
+<script>
+  (function () {
+    var boot = document.getElementById('boot');
+    if (!boot) return;
+    var hold = /(?:\?|&)boot=hold(?:&|$)/.test(location.search);   /* preview aid: ?boot=hold keeps it on screen */
+    var done = false;
+    function dismiss() {
+      if (done || hold) return; done = true;
+      boot.classList.add('out');
+      setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 400);
+    }
+    /* the stylesheet is what turns a blank page into the hero; go as soon as it is in */
+    var css = document.querySelector('link[rel="stylesheet"]');
+    if (css && css.sheet) dismiss();
+    else if (css) css.addEventListener('load', dismiss);
+    window.addEventListener('load', dismiss);
+    setTimeout(dismiss, 12000);   /* never trap the visitor behind it */
+  })();
+</script>
 
 <header class="nav" id="nav">
   <a class="mark" href="#top" aria-label="Home"><span></span></a>
