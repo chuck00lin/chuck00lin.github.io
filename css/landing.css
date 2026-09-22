@@ -423,13 +423,14 @@ ol, ul { padding: 0; list-style: none; }
 .is-waiting > .media-wait { opacity: 1; transition-delay: .3s; }   /* the delay hides it on fast loads */
 .media-wait::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent); }
-.media-wait i { position: absolute; inset: 0; animation: media-wait-spin 1.6s linear infinite; }
+.media-wait i { position: absolute; inset: 0; }
+.is-waiting > .media-wait i { animation: media-wait-spin 1.6s linear infinite; }   /* spin only while shown */
 .media-wait i::after { content: ""; position: absolute; left: 50%; top: -4px; width: 9px; height: 9px; margin-left: -4.5px;
   border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
 @keyframes media-wait-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
-  .media-wait i { animation: none; }
-  .media-wait i::after { animation: media-wait-pulse 1.2s ease-in-out infinite; }
+  .is-waiting > .media-wait i { animation: none; }
+  .is-waiting > .media-wait i::after { animation: media-wait-pulse 1.2s ease-in-out infinite; }
   @keyframes media-wait-pulse { 50% { opacity: .25; } }
 }
 .visual-caption { text-align: center; margin-top: 12px; font-family: var(--mono); font-size: .75rem; color: var(--muted); }
