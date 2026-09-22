@@ -466,3 +466,44 @@
   var ds = new URLSearchParams(location.search).get('scroll');
   if (ds) setTimeout(function () { window.scrollTo({ top: parseInt(ds, 10), behavior: 'instant' }); update(); }, 1200);
 })();
+
+/* ---------- media wait indicator (2026-09-22) ----------
+   Runs the orbit dot inside a chapter visual while its *active* asset is still on its way:
+   an image until it has pixels, a video from the moment the journey wants it to play until it
+   can. Posters cover the time before that. ?boot=hold keeps every indicator on for preview. */
+(function () {
+  var hold = new URLSearchParams(location.search).get('boot') === 'hold';
+  var containers = document.querySelectorAll('.visual-stack, .autonomy-visual');
+  if (!containers.length) return;
+  function ready(el) {
+    if (el.tagName === 'IMG') return !el.getAttribute('src') || el.__waitError || (el.complete && el.naturalWidth > 0);
+    if (el.tagName === 'VIDEO') return !el.__journeyPlayIntent || el.readyState >= 2 || !!el.error;
+    return true;
+  }
+  function activeMedia(c) {
+    var active = c.querySelector('.vis.on, .autonomy-frame.active');
+    if (!active) return [];
+    if (active.tagName === 'IMG' || active.tagName === 'VIDEO') return [active];
+    return Array.prototype.slice.call(active.querySelectorAll('img, video'));
+  }
+  containers.forEach(function (c) {
+    var w = document.createElement('div');
+    w.className = 'media-wait'; w.setAttribute('aria-hidden', 'true');
+    w.appendChild(document.createElement('i'));
+    c.appendChild(w);
+    var tick = function () {
+      var waiting = hold || activeMedia(c).some(function (m) { return !ready(m); });
+      c.classList.toggle('is-waiting', waiting);
+    };
+    c.querySelectorAll('img').forEach(function (img) {
+      img.addEventListener('load', tick);
+      img.addEventListener('error', function () { img.__waitError = true; tick(); });
+    });
+    c.querySelectorAll('video').forEach(function (v) {
+      ['loadstart', 'loadedmetadata', 'loadeddata', 'canplay', 'playing', 'error', 'emptied'].forEach(function (e) { v.addEventListener(e, tick); });
+    });
+    new MutationObserver(tick).observe(c, { subtree: true, attributes: true, attributeFilter: ['class', 'src'] });
+    tick();
+  });
+})();
+
