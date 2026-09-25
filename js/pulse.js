@@ -48,9 +48,13 @@
 
   document.addEventListener('journey:step', function (e) {
     var d = e.detail || {};
-    if (d.step < 0) { closeStep(); dirty = true; return; }   // left the chapter
+    if (d.step < 0 || !d.engaged) {                           // left the chapter, or not in it yet
+      if (current && current.c === d.chapter) { closeStep(); dirty = true; }
+      return;
+    }
     openStep(d.chapter, d.step);
   });
+  // a chapter whose pinned range we scroll out of without a step<0 event is closed by the next open
 
   // sections without steps: hero (always), at-a-glance, footer
   var io = new IntersectionObserver(function (entries) {

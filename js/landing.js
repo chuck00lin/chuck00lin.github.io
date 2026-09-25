@@ -292,7 +292,9 @@
         if (cap && idx >= 0) cap.textContent = cfg.captions[idx] || '';
       }
       if (cfg.onStep) cfg.onStep(idx);
-      document.dispatchEvent(new CustomEvent('journey:step', { detail: { chapter: cfg.id, step: idx } }));
+      // pulse.js listens; `engaged` is false for the chapters ahead of / behind the viewport, which
+      // also get a step assigned on every layout pass and must not count as seen
+      document.dispatchEvent(new CustomEvent('journey:step', { detail: { chapter: cfg.id, step: idx, engaged: hostIsEngaged(H) } }));
       // the map's slot is only final once its step is laid out, so re-fit on arrival
       if (cfg.id === 'cattle') fitCowMap();
     }
