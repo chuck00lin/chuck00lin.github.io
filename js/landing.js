@@ -292,6 +292,7 @@
         if (cap && idx >= 0) cap.textContent = cfg.captions[idx] || '';
       }
       if (cfg.onStep) cfg.onStep(idx);
+      document.dispatchEvent(new CustomEvent('journey:step', { detail: { chapter: cfg.id, step: idx } }));
       // the map's slot is only final once its step is laid out, so re-fit on arrival
       if (cfg.id === 'cattle') fitCowMap();
     }
