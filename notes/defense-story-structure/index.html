@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>把多項工作串成一個故事 — 一份博士口試簡報的結構拆解</title>
+<meta name="description" content="拆解一份 48 頁博士口試簡報的故事結構：怎麼把三年、三篇論文的多項工作串成一條鏈，以及這套結構如何搬到 20 分鐘的工作彙報。">
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#fbfcfa; --fg:#1b1f1c; --muted:#5d665f; --line:#dfe5df;
+    --green:#1f6b3a; --green-soft:#e6f1e9; --orange:#c8651f; --orange-soft:#fbeadc;
+    --blue:#2d5f8a; --blue-soft:#e3edf5; --card:#ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#101412; --fg:#e6ebe7; --muted:#9aa49d; --line:#273029;
+      --green:#6fc38c; --green-soft:#18271d; --orange:#f0a067; --orange-soft:#2d1f14;
+      --blue:#8ab8e0; --blue-soft:#15222d; --card:#161c18; }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:17px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",Helvetica,Arial,sans-serif}
+  main{max-width:760px;margin:0 auto;padding:56px 20px 96px}
+  h1{font-size:1.9rem;line-height:1.3;margin:0 0 .5rem;letter-spacing:-.01em}
+  h2{font-size:1.3rem;margin:3rem 0 .8rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+  h3{font-size:1.05rem;margin:1.8rem 0 .4rem}
+  p{margin:.8rem 0}
+  .lede{color:var(--muted);font-size:1.02rem;margin-bottom:2rem}
+  .kicker{color:var(--green);font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+  figure{margin:1.4rem 0}
+  figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+  figcaption{font-size:.88rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+  .note{background:var(--green-soft);border-left:4px solid var(--green);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:1.2rem 0}
+  .note b{color:var(--green)}
+  .pm{background:var(--blue-soft);border-left:4px solid var(--blue);padding:.8rem 1rem;border-radius:0 8px 8px 0;margin:1.2rem 0}
+  .pm b{color:var(--blue)}
+  ul,ol{padding-left:1.4rem}
+  li{margin:.35rem 0}
+  code{font:.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--green-soft);padding:.1em .35em;border-radius:4px}
+  /* slide map */
+  .map{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:1.2rem 0}
+  .map div{border-radius:6px;padding:.55rem .5rem;font-size:.82rem;line-height:1.35;text-align:center;border:1px solid var(--line);background:var(--card)}
+  .map .n{display:block;font-size:1.25rem;font-weight:700;line-height:1.1}
+  .map .g{border-color:var(--green);background:var(--green-soft)}
+  .map .o{border-color:var(--orange);background:var(--orange-soft)}
+  @media (max-width:560px){ .map{grid-template-columns:repeat(2,1fr)} .map .wide{grid-column:span 2} }
+  /* three-column skeleton */
+  .skel{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:1.2rem 0}
+  .skel>div{border:1px dashed var(--line);border-radius:8px;padding:.7rem .8rem;background:var(--card);font-size:.9rem;line-height:1.5}
+  .skel .h{font-weight:700;display:block;margin-bottom:.3rem}
+  .skel .s1 .h{color:var(--green)} .skel .s2 .h{color:var(--blue)} .skel .s3 .h{color:var(--orange)}
+  .skel small{color:var(--muted);display:block}
+  @media (max-width:560px){ .skel{grid-template-columns:1fr} }
+  /* section rhythm */
+  .rhythm{display:flex;flex-wrap:wrap;gap:6px;margin:1rem 0}
+  .rhythm span{border:1px solid var(--line);border-radius:999px;padding:.25rem .7rem;font-size:.85rem;background:var(--card)}
+  .rhythm .arrow{border:none;background:none;color:var(--muted);padding:.25rem .1rem}
+  table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1rem 0}
+  th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:.85rem}
+  footer{margin-top:4rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+  a{color:var(--green)}
+</style>
+</head>
+<body>
+<main>
+
+<span class="kicker">Notes · 簡報結構</span>
+<h1>把多項工作串成一個故事<br>一份博士口試簡報的結構拆解</h1>
+<p class="lede">這是我 2026 年 7 月博士學位口試用的簡報（48 頁、40 分鐘），內容是溫室無人機與 3D 植物表型分析，三年、三篇論文的工作。主題跟軟體產品沒有關係，但「怎麼把很多件事串成一條線講」是通用的。這篇把結構拆開來，給要做 20 分鐘半年工作彙報的人參考。</p>
+
+<h2>一、整體配置：48 頁怎麼分</h2>
+<p>先看比例。開場加問題定義只用 8 頁，但那 8 頁決定了後面 40 頁的框架；主體三段各自獨立成章；收尾 4 頁把三段收回同一個框。</p>
+
+<div class="map">
+  <div><span class="n">2</span>開場<br><small>議程、題目</small></div>
+  <div class="g"><span class="n">6</span>脈絡 → 缺口 → 目標<br><small>p.3–8</small></div>
+  <div class="g"><span class="n">8</span>Stage 1<br><small>p.9–16</small></div>
+  <div class="g"><span class="n">14</span>Stage 2<br><small>p.17–30</small></div>
+  <div class="o"><span class="n">14</span>Stage 3<br><small>p.31–44</small></div>
+  <div class="wide"><span class="n">4</span>結論、貢獻、文獻、致謝<br><small>p.45–48</small></div>
+</div>
+
+<p>三段的頁數不平均，是刻意的：Stage 3 是這次最新、委員還沒看過的工作，所以給它最多篇幅和一個不同的顏色（橘色）。前兩段已經發表過，講到「夠讓人相信它能支撐第三段」就停。</p>
+
+<div class="pm"><b>換到工作彙報：</b>半年裡不是每個專案都值得等長。挑一個當主角，給它顏色和篇幅；其他的講到「它為主角提供了什麼」為止。</div>
+
+<h2>二、骨架：一句話、三段、一條鏈</h2>
+<p>整份簡報只有一個骨架：一條「從取得影像到得出生長曲線」的流程鏈，切成三段。每一件工作都被放進鏈上的某個位置，沒有位置的工作就不出現。</p>
+
+<figure>
+  <img src="img/slide-06.webp" alt="Research objectives：三個 Stage 並排，底下一句話總結整個框架" loading="lazy">
+  <figcaption>p.6 研究目標。三個框是三段工作，中間的箭頭是「前一段的輸出是後一段的輸入」，最底下一句話是整份簡報的主張。</figcaption>
+</figure>
+
+<figure>
+  <img src="img/slide-07.webp" alt="Research overview：三段各自展開成子步驟，用箭頭連成一條鏈" loading="lazy">
+  <figcaption>p.7 把同樣三段各自展開成 3 到 4 個子步驟。觀眾在這頁之後就有了整張地圖，後面每一頁都能對回來。</figcaption>
+</figure>
+
+<div class="skel">
+  <div class="s1"><span class="h">Stage 01</span>取得資料<small>無人機能不能在溫室裡自己飛、重複飛</small></div>
+  <div class="s2"><span class="h">Stage 02</span>從資料算出數字<small>單一時間點的 3D 場景能不能變成每株、每片葉的量測值</small></div>
+  <div class="s3"><span class="h">Stage 03</span>把數字串成時間序列<small>每兩天飛一次，追同一株植物的生長曲線</small></div>
+</div>
+
+<div class="pm"><b>換到工作彙報：</b>半年的專案清單先不要排時間序，先找「鏈」。例如「發現問題 → 驗證需求 → 上線功能 → 量到成效」就是一條鏈。把每個專案放到鏈上的一個位置，再決定講的順序。放不進去的專案，放附錄或不講。</div>
+
+<h2>三、開場三步：脈絡、缺口、目標</h2>
+<p>p.3 到 p.6 做的是同一件事的三個層次：先給一張大家都接受的全景圖，再放大到我做的那一段，指出那一段哪裡斷掉，最後宣告我要補哪三個洞。</p>
+
+<figure>
+  <img src="img/slide-03.webp" alt="Plant-centered feedback 迴圈，標出 Plant Monitoring 與 Phenotypic Analysis 兩個節點" loading="lazy">
+  <figcaption>p.3 領域公認的大迴圈（引用別人的框架，不是我畫的），用一個括號標出「我做的是這兩格」。這張圖在 p.46 會再出現一次。</figcaption>
+</figure>
+
+<figure>
+  <img src="img/slide-05.webp" alt="Problem definition：三個前人工作，各自標 WHERE IT STOPS" loading="lazy">
+  <figcaption>p.5 問題定義。三欄各放一個最接近的前人工作，先講它做到哪（一句），再用紅色標籤 <code>WHERE IT STOPS</code> 講它停在哪（一句）。</figcaption>
+</figure>
+
+<p>關鍵技巧在 p.5 和 p.6 的對應：三個缺口和三個 Stage 是一對一的，而且版面位置完全一樣。缺口 01 在左欄，Stage 01 也在左欄。觀眾不用重新學一次地圖。</p>
+
+<div class="note"><b>可以直接抄的格式：</b>每個「現況」都用兩句話，第一句「它做到了什麼」，第二句「它停在哪裡」。停在哪裡，就是你的工作從哪裡開始。</div>
+
+<div class="pm"><b>換到工作彙報：</b>「半年前的狀態 → 哪裡卡住 → 我們做了什麼」三欄固定不動。第一次出現時講現況，第二次出現時換成你的三個專案，位置不變。</div>
+
+<h2>四、一個固定的視覺座標</h2>
+<p>整份簡報有幾個重複出現的元素，功能是讓觀眾隨時知道自己在地圖的哪裡：</p>
+<ul>
+  <li>每一頁左上角有 <code>STAGE ② 3D Trait estimation</code> 這種標籤，從 p.10 到 p.44 沒有一頁漏掉。</li>
+  <li>每一頁底部有一條綠色進度條，隨頁數變長。觀眾知道還剩多少。</li>
+  <li>三欄版面在 p.5、p.6、p.7、p.45 重複出現。</li>
+  <li>Stage 3 從 p.5 開始就是橘色，到 p.45 結論還是橘色。顏色不換，觀眾不用重新對應。</li>
+  <li>p.3 的大迴圈圖在 p.46 原封不動再放一次，加上箭頭標出「這三年填了哪兩格」。</li>
+</ul>
+
+<div class="pm"><b>換到工作彙報：</b>挑一張圖當地圖。開頭放一次，每段開始前放一次（把目前這段打亮），結尾放一次。20 分鐘的簡報用同一張圖三次不會嫌多，反而是觀眾最感謝的地方。</div>
+
+<h2>五、每一段內部的節奏</h2>
+<p>三段的內部結構是一樣的，照這個順序走：</p>
+
+<div class="rhythm">
+  <span>段落分隔頁</span><span class="arrow">→</span>
+  <span>系統或方法（1–3 頁）</span><span class="arrow">→</span>
+  <span>實際跑起來的證據（1 頁）</span><span class="arrow">→</span>
+  <span>驗證（1–2 頁）</span><span class="arrow">→</span>
+  <span>一個數字</span>
+</div>
+
+<p>以 Stage 1 為例：p.9 分隔頁、p.10–12 系統架構、p.13 真的在溫室裡飛的畫面、p.14–15 跟參考量測比對、最後落在「定位誤差 5.4–8.0 cm」這一個數字。這個數字在 p.45 結論會原樣再出現。</p>
+
+<h3>標題寫成結論句，不是主題</h3>
+<figure>
+  <img src="img/slide-15.webp" alt="標題：Navigation RMSE of 5.4–8.0 cm across three path geometries" loading="lazy">
+  <figcaption>p.15 標題直接是結果：「三種路徑的定位誤差 5.4–8.0 cm」。就算觀眾只看標題、不看圖，也拿到了結論。</figcaption>
+</figure>
+<p>對照寫法：「Navigation validation」是主題，「Navigation RMSE of 5.4–8.0 cm」是結論。整份簡報的結果頁都用後者。</p>
+
+<div class="pm"><b>換到工作彙報：</b>「Onboarding 改版」是主題；「Onboarding 改版後首週流失降 18%」是結論。每一頁標題用後者，20 分鐘講不完時，觀眾翻標題就能看完。</div>
+
+<h3>把段落接起來的那一頁</h3>
+<figure>
+  <img src="img/slide-31.webp" alt="Stage 3 分隔頁：左邊是 Stage 01 與 Stage 02 兩個框，箭頭指向右邊的 Stage 3 內容" loading="lazy">
+  <figcaption>p.31 Stage 3 的分隔頁沒有只寫標題，而是把 Stage 1 和 Stage 2 的框再畫一次，箭頭指過來：第三段是用前兩段的輸出做的。</figcaption>
+</figure>
+<p>這一頁是整份簡報從「三件工作」變成「一個故事」的關鍵。沒有它，Stage 3 只是第三個題目；有了它，觀眾知道前面 30 頁都是為了這一段鋪路。</p>
+
+<div class="pm"><b>換到工作彙報：</b>找出「專案 C 用到了專案 A 和 B 的產出」這種關係，用一頁明講。這一頁通常也是最能回答「你這半年到底在做什麼」的一頁。</div>
+
+<h3>每一段只留一個數字</h3>
+<p>Stage 1 是 5.4–8.0 cm，Stage 2 是 precision 0.933 和 AP₅₀ 0.924，Stage 3 是 18 株、198 株日、R² &gt; 0.99。中間其實有很多數字，但帶到結論的只有這幾個。</p>
+
+<h2>六、收尾：三個數字回到三個框</h2>
+<figure>
+  <img src="img/slide-45.webp" alt="Conclusion：三欄各一個數字，底下三個標籤用箭頭串成一條鏈" loading="lazy">
+  <figcaption>p.45 結論。版面和 p.6 一模一樣，差別是每個框裡現在填的是數字。底下一句話「三個驗證過的能力組成一條從取得影像到生長曲線的流程」，呼應 p.6 底下的那句主張。</figcaption>
+</figure>
+
+<figure>
+  <img src="img/slide-46.webp" alt="Contribution：p.3 的大迴圈再出現一次，橘色箭頭標出填上的兩格" loading="lazy">
+  <figcaption>p.46 貢獻。p.3 的大圖再放一次，加兩個橘色箭頭標出這三年填上的兩格。開頭的圖在結尾收回來，故事就閉合了。</figcaption>
+</figure>
+
+<h2>七、換算到 20 分鐘</h2>
+<p>48 頁對 40 分鐘，大約一頁 50 秒。20 分鐘用 20 到 24 頁，分配方式照同樣比例縮：</p>
+
+<table>
+  <thead><tr><th>區塊</th><th>頁數</th><th>內容</th></tr></thead>
+  <tbody>
+    <tr><td>開場</td><td>3–4</td><td>一張地圖、半年前卡在哪（三欄）、這半年做了哪三件（同三欄）、一句話主張</td></tr>
+    <tr><td>每一段</td><td>4–5</td><td>結論句標題的方法頁 1、證據頁 1–2、數字頁 1。分隔頁可以省，用標題顏色代替</td></tr>
+    <tr><td>串聯頁</td><td>1</td><td>明講哪個專案用了哪個專案的產出</td></tr>
+    <tr><td>收尾</td><td>2</td><td>三個數字回到三個框；地圖再放一次標出填了哪裡，加下半年要填哪裡</td></tr>
+  </tbody>
+</table>
+
+<p>有兩個地方不要照抄。第一，這份簡報 p.22 到 p.27 有六頁方法細節，那是給口試委員看的，工作彙報的觀眾不需要，一頁帶過。第二，學術簡報不講「下一步要什麼資源」，工作彙報的最後一頁應該講。</p>
+
+<h2>八、可以直接抄的小東西</h2>
+<ul>
+  <li>紅色 <code>WHERE IT STOPS</code> 標籤：講現況時逼自己用一句話說出斷點。</li>
+  <li>右上角段落標籤和底部進度條：讓觀眾隨時知道在哪裡、還剩多少。</li>
+  <li>專有名詞第一次出現就給一行定義（p.21 對 PSNR 和 SSIM 的做法），之後不再解釋。</li>
+  <li>一頁表格講清楚規模（p.8：幾株、幾天、每幾天量一次）。觀眾在聽結果前要先知道樣本多大。</li>
+  <li>結論頁和目標頁用完全相同的版面，只換內容。</li>
+</ul>
+
+<footer>
+  <p>投影片原檔：<em>Application of an Autonomous UAV System for Three-Dimensional Phenotyping and Growth Monitoring of Greenhouse Muskmelon Plants</em>，博士學位論文口試，國立臺灣大學生物機電工程學系，2026 年 7 月。相關論文見 <a href="https://doi.org/10.3390/drones10030205">Drones 10(3), 205</a> 與 <a href="https://doi.org/10.3389/fpls.2026.1783465">Frontiers in Plant Science 17, 1783465</a>。</p>
+  <p><a href="/">← lalalachuck.com</a></p>
+</footer>
+
+</main>
+</body>
+</html>
